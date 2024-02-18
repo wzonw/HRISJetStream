@@ -18,16 +18,16 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['nullable', 'string', 'max:255'], 
-            'surname' => ['nullable', 'string', 'min:3', 'max:255'], 
-            'suffix' => ['nullable', 'string', 'max:3'],
-            'gender' => ['nullable', 'string', 'max:20'], 
+            'name' => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:255'], 
+            'surname' => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'min:3', 'max:255'], 
+            'suffix' => ['nullable', 'string', 'alpha', 'max:3'],
+            'gender' => ['nullable', 'string', 'alpha', 'max:20'], 
             'birthdate' => ['required', 'date'],
             'age' => ['required', 'int', 'max:100'], 
             'place_of_birth' => ['nullable', 'string', 'max:30'],
-            'nationality' => ['required', 'string', 'max:30'], 
-            'civil_status' => ['required', 'string', 'max:20'], 
+            'nationality' => ['required', 'string', 'alpha', 'max:30'], 
+            'civil_status' => ['required', 'string', 'alpha', 'max:20'], 
             'address' => ['required', 'string', 'max:50'], 
             'mobile' => ['required', 'string', 'max:11'], 
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],

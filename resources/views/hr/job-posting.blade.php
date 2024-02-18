@@ -7,6 +7,9 @@
             <a class="w-[129px] h-4 left-[257px] top-[35px] absolute text-orange-300 text-[13px] font-normal" href="https://www.plm.edu.ph/" target="_blank" >PLM Website</a>
             <div class="w-[212px] h-[33px] left-[28px] top-[26px] absolute text-indigo-800 text-2xl font-bold">Available Careers</div>
         </div>
+        <div class="mt-16">
+            
+        </div>
     </div>
     
     <div class="w-[485px] h-[463px] relative my-4 border border-black ">
