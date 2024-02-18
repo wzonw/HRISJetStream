@@ -13,6 +13,6 @@ class compenbencontroller extends Controller
         if(Gate::denies('for-compen-ben')){
             abort(403);
         }
-        return view('hr.leave-request');
+        return view('hr.dashboard.index');
     }
 }

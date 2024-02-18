@@ -44,6 +44,14 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::resource('dashboard', \App\Http\Controllers\HR\HRController::class);
     });
 
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment', 'as' => 'r.'], function(){
+        Route::resource('dashboard', \App\Http\Controllers\Recruitment\RecruitmentController::class);
+    });
+
+    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation', 'as' => 'c.'], function(){
+        Route::resource('dashboard', \App\Http\Controllers\Compensation\compenbencontroller::class);
+    });
+    
 
     Route::group(['middleware' => 'role:applicant', 'prefix' => 'applicant', 'as' => 'applicant.'], function(){
         Route::resource('dashboard', \App\Http\Controllers\Applicant\ApplicantController::class);
@@ -73,15 +81,39 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         })->name('view-request');
     });
 
-    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'admin'], function(){
-        Route::get('/recruitment/job-posting', function () {
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::get('/job-posting', function () {
             return view('hr.job-posting ');
         })->name('job-posting');
     });
 
-    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'admin'], function(){
-        Route::get('/compen/leave-request', function () {
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::get('/applicant/list', function () {
+            return view('hr.applicant-list');
+        })->name('applicant-list');
+    });
+
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::get('/applicant/profile', function () {
+            return view('hr.applicant-profile');
+        })->name('applicant-profile');
+    });
+
+    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation'], function(){
+        Route::get('/leave-request', function () {
             return view('hr.leave-request');
         })->name('leave-request');
+    });
+
+    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation'], function(){
+        Route::get('/leave-list', function () {
+            return view('hr.leave-list');
+        })->name('leave-list');
+    });
+
+    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation'], function(){
+        Route::get('/time-keeping', function () {
+            return view('hr.time-keeping');
+        })->name('time-keeping');
     });
 }); 

@@ -13,6 +13,6 @@ class RecruitmentController extends Controller
         if(Gate::denies('for-recruitment')){
             abort(403);
         }
-        return view('hr.job-posting');
+        return view('hr.dashboard.index');
     }
 }

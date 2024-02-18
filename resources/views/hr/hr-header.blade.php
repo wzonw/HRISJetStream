@@ -62,7 +62,7 @@
                                 {{ __('Employee Portal') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('hr.dashboard.index') }}">
+                            <x-dropdown-link href="{{ route('dashboard') }}">
                                 {{ __('Go To Employee Portal ') }}
                             </x-dropdown-link>
 

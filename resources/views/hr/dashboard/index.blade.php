@@ -56,7 +56,7 @@
             <div class="w-[527px] h-[250px] left-0 top-0 absolute bg-white shadow"></div>
             <div class="w-[233px] h-[42px] left-[20px] top-[19px] absolute text-yellow-600 text-xl font-bold ">Quick Links</div>
             <div class="w-[99px] h-[27px] left-[53px] top-[72px] absolute text-right text-neutral-950 text-base font-normal">PLM Website</div>
-            <div class="w-[147px] h-[26px] left-[186px] top-[72px] absolute text-yellow-600 text-opacity-80 text-base font-normal">link.com</div>
+            <a class="min-w-max h-[26px] left-[186px] top-[72px] absolute text-yellow-600 text-opacity-80 text-base font-normal" href='https://www.plm.edu.ph/' target="_blank">Pamantasan ng Lungsod ng Maynila</a>
             <div class="w-[148px] h-[27px] left-[186px] top-[113px] absolute text-yellow-600 text-opacity-80 text-base font-normal">link.com</div>
             <div class="w-[148px] h-[27px] left-[186px] top-[155px] absolute text-yellow-600 text-opacity-80 text-base font-normal">link.com</div>
             <div class="w-[132px] h-[27px] left-[20px] top-[109px] absolute text-right text-neutral-950 text-base font-normal">HR Request Form</div>
