@@ -84,4 +84,6 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
             return view('hr.leave-request');
         })->name('leave-request');
     });
+
+    Route::get('/search', [\App\Http\Controllers\JobsAvailableController::class, 'search']);
 }); 

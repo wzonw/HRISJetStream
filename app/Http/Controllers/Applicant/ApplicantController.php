@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobsAvailable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,7 +23,10 @@ class ApplicantController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+
+     
+
+     public function create()
     {
         //
     }
