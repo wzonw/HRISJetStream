@@ -110,49 +110,22 @@
         <!-- Employee Table -->
         <table class="w-[1014px] bg-white shadow border-black border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-700">
             <tbody>
+                @foreach ($employees as $employee)
                 <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 dark:border-black">
                     <th scope="row" class="w-56 px-6 py-3 font-medium  whitespace-nowrap">
-                        <a href="{{ route('view-employee-profile') }}">Phinease Flynn</a>
+                        <a href="{{ route('view-employee-profile', $employee->id) }}">{{$employee->name}} </a>
                     </th>
                     <td class="px-6 py-3">
-                        COS/JO
+                        {{$employee->emp_type}}
                     </td>
                     <td class="px-6 py-3">
-                        Instructor I
+                        {{$employee->position}}
                     </td>
                     <td class="px-6 py-3">
-                        Department
+                        {{$employee->dept}}
                     </td>
                 </tr>
-                <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 dark:border-black">
-                    <th scope="row" class="px-6 py-3 font-medium  whitespace-nowrap">
-                        <a href="{{ route('view-employee-profile') }}">text</a>
-                    </th>
-                    <td class="px-6 py-3">
-                        text
-                    </td>
-                    <td class="px-6 py-3">
-                        text
-                    </td>
-                    <td class="px-6 py-3">
-                        text
-                    </td>
-                </tr>
-                <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 border-b dark:border-black">
-                    <th scope="row" class="px-6 py-3 font-medium  whitespace-nowrap">
-                        <a href="{{ route('view-employee-profile') }}">text</a>
-                    </th>
-                    <td class="px-6 py-3">
-                        text
-                    </td>
-                    <td class="px-6 py-3">
-                        text
-                    </td>
-                    <td class="px-6 py-3">
-                        text
-                    </td>
-                    
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

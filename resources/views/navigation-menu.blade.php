@@ -25,19 +25,19 @@
 
                     @can('for-admins')
                     <x-nav-link href="{{ route('hr.dashboard.index') }}" :active="request()->routeIs('hr.dashboard.index')">
-                        {{ __('Personnel Management') }}
+                        {{ __('Admin') }}
                     </x-nav-link>
                     @endif
 
                     @can('for-recruitment')
-                    <x-nav-link href="{{ route('r.dashboard.index') }}" :active="request()->routeIs('r.dashboard.index')">
-                        {{ __('Recruitment') }}
+                    <x-nav-link href="{{ route('job-posting') }}" :active="request()->routeIs('job-posting')">
+                        {{ __('recruitment') }}
                     </x-nav-link>
                     @endif
                     
                     @can('for-compen-ben')
-                    <x-nav-link href="{{ route('c.dashboard.index') }}" :active="request()->routeIs('c.dashboard.index')">
-                        {{ __('Compensation') }}
+                    <x-nav-link href="{{ route('leave-request') }}" :active="request()->routeIs('leave-request')">
+                        {{ __('Admin') }}
                     </x-nav-link>
                     @endif
 

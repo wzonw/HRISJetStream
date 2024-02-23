@@ -35,7 +35,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="inline-flex h-screen">
+            <main class="inline-flex">
             <livewire:hr-navigation-menu />
                 {{ $slot }}
             </main>

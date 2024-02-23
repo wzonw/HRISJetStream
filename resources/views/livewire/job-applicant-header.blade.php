@@ -16,3 +16,5 @@
         </p>
     </div>
 </div>
+
+<!--style="background-image: url(); background-size: cover ;background-attachment: fixed; background-repeat: no-repeat;"--->

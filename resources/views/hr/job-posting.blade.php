@@ -1,15 +1,10 @@
-<x-admin-layout>
+<x-recruitment-layout>
     <div class="w-[639px] h-[600px] mx-4 my-4 relative border border-black font-'inter' ">
-        <div>
-            <div class="w-[42px] h-[25px] left-[568px] top-[29px] absolute">
-                <div class="w-[42px] h-[25px] left-0 top-0 absolute bg-purple-600 rounded-[5px]"></div> <!--ICON-->
-            </div>
-            <a class="w-[129px] h-4 left-[257px] top-[35px] absolute text-orange-300 text-[13px] font-normal" href="https://www.plm.edu.ph/" target="_blank" >PLM Website</a>
-            <div class="w-[212px] h-[33px] left-[28px] top-[26px] absolute text-indigo-800 text-2xl font-bold">Available Careers</div>
+        <div class="w-[42px] h-[25px] left-[568px] top-[29px] absolute">
+            <div class="w-[42px] h-[25px] left-0 top-0 absolute bg-purple-600 rounded-[5px]"></div> <!--ICON-->
         </div>
-        <div class="mt-16">
-            
-        </div>
+        <a class="w-[129px] h-4 left-[257px] top-[35px] absolute text-orange-300 text-[13px] font-normal" href="https://www.plm.edu.ph/" target="_blank" >PLM Website</a>
+        <div class="w-[212px] h-[33px] left-[28px] top-[26px] absolute text-indigo-800 text-2xl font-bold">Available Careers</div>
     </div>
     
     <div class="w-[485px] h-[463px] relative my-4 border border-black ">
@@ -39,4 +34,4 @@
         </div>
     </div>
 
-</x-admin-layout>
+</x-recruitment-layout>

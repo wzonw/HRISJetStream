@@ -16,29 +16,23 @@
                 <!-- Applicant name, status button -->
                 <div class="items-baseline space-y-3">
                     <p class="w-fit min-h-max  text-indigo-800 text-3xl font-bold font-inter">
-                        {{ Auth::user()->name. " ". Auth::user()->surname }}
+                        {{ $user->name }}
                     </p>
                     <div class="inline-flex space-x-5">
                         <p class="min-w-max h-5 text-black text-base font-medium font-inter">
-                            Employee Status
+                            {{ $user->emp_type }}
                         </p>
                         <p class="min-w-max h-5 text-black text-base font-medium font-inter">
                             |
                         </p>
                         <p class="min-w-max h-5 text-yellow-600 text-base font-medium font-inter">
-                            Job Position
+                            {{ $user->position }}
                         </p>
                     </div>
                     <div>
                         <div class="inline-flex">
                             <p class="min-w-max h-5 text-black text-base font-medium font-inter">
-                                Place of Assignment
-                            </p>
-                            <p class="min-w-max h-5 text-black text-base font-medium font-inter">
-                                /
-                            </p>
-                            <p class="min-w-max h-5 text-black text-base font-medium font-inter">
-                                Department
+                                {{ $user->dept }} Department
                             </p>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+
 <div>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     
@@ -7,7 +8,7 @@
             <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 dark:border-black border">
                 <th scope="row" class="px-6 py-3 w-44 font-medium font-inter whitespace-nowrap">
                      @if ($job->dept == '')
-                        @if ($job->status == 'COS/JO')
+                        @if ($job->status == 'Part-Time')
                         
                             <span class="font-bold"> {{$job->college}} </span>
                             <span>- Part Time {{$job->job_name}} </span>
@@ -19,7 +20,7 @@
                         
                         @endif
                      @else
-                        @if ($job->status == 'COS/JO')
+                        @if ($job->status == 'Part-Time')
                         
                             <span class="font-bold"> {{$job->dept}} </span>
                             <span>- Part Time {{$job->job_name}} </span>
@@ -44,9 +45,13 @@
                     @endif
                 </th>       
                 <td class="w-10 border-l border-black">
-                    <x-button-gold class="mx-2 w-28" wire:click="toggleApply">
-                        Apply
-                    </x-button-gold>
+                    <form action="{{ route('app-profile', $job->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="job_id" value="{{ $job->id }}">
+                        <x-button-gold class="mx-2 w-28" >
+                            Apply
+                        </x-button-gold>
+                    </form>
                 </td>
             </tr>
             @endforeach
