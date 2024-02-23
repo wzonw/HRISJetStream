@@ -29,4 +29,9 @@
             </div>
     </div>
     </form>
+    <div class="mt-5">
+        <a href="{{ route('landing-page') }}">
+            Go Back to Landing Page
+        </a>
+    </div>
 </div>

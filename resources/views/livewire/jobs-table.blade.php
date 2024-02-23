@@ -45,9 +45,13 @@
                     @endif
                 </th>       
                 <td class="w-10 border-l border-black">
-                    <x-button-gold class="mx-2 w-28" wire:click="toggleApply">
-                        Apply
-                    </x-button-gold>
+                    <form action="{{ route('app-profile', $job->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="job_id" value="{{ $job->id }}">
+                        <x-button-gold class="mx-2 w-28" >
+                            Apply
+                        </x-button-gold>
+                    </form>
                 </td>
             </tr>
             @endforeach

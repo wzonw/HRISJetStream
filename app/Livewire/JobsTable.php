@@ -23,7 +23,7 @@ class JobsTable extends Component
 
     public function render()
     {
-       $jobs=JobsAvailable::paginate(3);
+       $jobs=JobsAvailable::paginate(5);
         return view('livewire.jobs-table', [
             'jobs'=> $jobs
         ]);

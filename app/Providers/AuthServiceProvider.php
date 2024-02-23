@@ -24,11 +24,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('for-admins', function (User $user) {
+
+        Gate::define('for-applicants', function (User $user) {
             return $user->role_id == 1;
         });
 
-        Gate::define('for-applicants', function (User $user) {
+        Gate::define('for-admins', function (User $user) {
             return $user->role_id == 2;
         });
 

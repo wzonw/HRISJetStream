@@ -29,7 +29,7 @@ class JobsAvailableController extends Controller
         ->where('college','LIKE','%' .$college.'%')
         ->paginate(50);  
      
-        return view('livewire.jobs-table', compact('jobs'));
+        return view('livewire.jobs-filter', compact('jobs'));
      }
 
 }

@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('livewire.landing-page');
+})->name('landing-page');
+
+Route::get('/plm/jobs', function () {
+    return view('jobs-available');
+})->name('guest-jobs-available');
+
+Route::post('/plm/jobs/application/{id}', [App\Http\Controllers\Applicant\ApplicantController::class, 'guest_application'])
+    ->name('app-profile');
 
 Route::middleware([
     'auth:sanctum',
@@ -55,16 +62,24 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         })->name('jobs-available');
     });
 
-    Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){
-        Route::get('/view/employee/list', function () {
-            return view('hr.view-employee-list');
-        })->name('view-employee-list');
+    Route::group(['middleware' => 'role:applicant'], function(){
+        Route::get('/applicant/jobs/application', [\App\Http\Controllers\Applicant\ApplicantController::class, 'application'])
+        ->name('application-section');
     });
 
-    Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){
-        Route::get('/view/employee/profile', function () {
-            return view('hr.view-employee-profile');
-        })->name('view-employee-profile');
+    Route::group(['middleware' => 'role:applicant'], function(){
+        Route::post('/applicant/jobs/detail/{id}', [\App\Http\Controllers\Applicant\ApplicantController::class, 'store'])
+        ->name('applicant.apply');
+    });
+
+    Route::group(['middleware' => 'role:personnel management', 'prefix' => 'pm'], function(){
+        Route::get('/view/employee/list', [\App\Http\Controllers\HR\HRController::class, 'emp_list'
+        ])->name('view-employee-list');
+    });
+
+    Route::group(['middleware' => 'role:personnel management', 'prefix' => 'pm'], function(){
+        Route::get('/view/employee/profile/{id}', [\App\Http\Controllers\HR\HRController::class, 'emp_detail'])
+        ->name('view-employee-profile');
     });
 
     Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){

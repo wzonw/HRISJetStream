@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobApplications;
 use App\Models\JobsAvailable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class ApplicantController extends Controller
@@ -23,10 +25,21 @@ class ApplicantController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function detail($id)
+    {
 
-     
+        $job = JobsAvailable::where([
+            'id' => $id,
+            ])->first();
 
-     public function create()
+        return view('job-details', ['job' => $job]);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         //
     }
@@ -36,7 +49,51 @@ class ApplicantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $job = JobsAvailable::findOrFail($request->input('job_id'));
+
+        $application = JobApplications::where('user_id', Auth::user()->id)->first();
+
+        if($application == null){
+            $application = new JobApplications;
+ 
+            $application->job_id = $job->id;
+
+            $application->user_id = Auth::user()->id;
+
+            $application->applied_date = now();
+    
+            $application->save();
+
+            $message = 'Successfully Applied';
+        }
+        else{
+            $message = 'You have an existing application.';
+        }
+
+        return redirect()->route('jobs-available')->with('message', $message);
+    }
+
+    public function application()
+    {
+        $application = JobApplications::where('user_id', Auth::user()->id)->first();
+
+        if($application == null){
+            abort(404);
+        }
+        $job = JobsAvailable::where('id', $application->job_id)->first();
+        return view('livewire.application-section', [
+            'application'=> $application,
+            'job' => $job
+        ]);
+    }
+
+    public function guest_application(Request $request){
+        $job = JobsAvailable::findOrFail($request->input('job_id'));
+        
+        return view('livewire.app-profile', [
+            'job' => $job
+        ]);
+
     }
 
     /**
