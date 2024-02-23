@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('livewire.landing-page');
+})->name('landing-page');
+
+Route::get('/plm/jobs', function () {
+    return view('jobs-available');
+})->name('guest-jobs-available');
+
+Route::post('/plm/jobs/application/{id}', [App\Http\Controllers\Applicant\ApplicantController::class, 'guest_application'])
+    ->name('app-profile');
 
 Route::middleware([
     'auth:sanctum',
@@ -44,14 +51,6 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::resource('dashboard', \App\Http\Controllers\HR\HRController::class);
     });
 
-    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment', 'as' => 'r.'], function(){
-        Route::resource('dashboard', \App\Http\Controllers\Recruitment\RecruitmentController::class);
-    });
-
-    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation', 'as' => 'c.'], function(){
-        Route::resource('dashboard', \App\Http\Controllers\Compensation\compenbencontroller::class);
-    });
-    
 
     Route::group(['middleware' => 'role:applicant', 'prefix' => 'applicant', 'as' => 'applicant.'], function(){
         Route::resource('dashboard', \App\Http\Controllers\Applicant\ApplicantController::class);
@@ -63,16 +62,24 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         })->name('jobs-available');
     });
 
-    Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){
-        Route::get('/view/employee/list', function () {
-            return view('hr.view-employee-list');
-        })->name('view-employee-list');
+    Route::group(['middleware' => 'role:applicant'], function(){
+        Route::get('/applicant/jobs/application', [\App\Http\Controllers\Applicant\ApplicantController::class, 'application'])
+        ->name('application-section');
     });
 
-    Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){
-        Route::get('/view/employee/profile', function () {
-            return view('hr.view-employee-profile');
-        })->name('view-employee-profile');
+    Route::group(['middleware' => 'role:applicant'], function(){
+        Route::post('/applicant/jobs/detail/{id}', [\App\Http\Controllers\Applicant\ApplicantController::class, 'store'])
+        ->name('applicant.apply');
+    });
+
+    Route::group(['middleware' => 'role:personnel management', 'prefix' => 'pm'], function(){
+        Route::get('/view/employee/list', [\App\Http\Controllers\HR\HRController::class, 'emp_list'
+        ])->name('view-employee-list');
+    });
+
+    Route::group(['middleware' => 'role:personnel management', 'prefix' => 'pm'], function(){
+        Route::get('/view/employee/profile/{id}', [\App\Http\Controllers\HR\HRController::class, 'emp_detail'])
+        ->name('view-employee-profile');
     });
 
     Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){
@@ -81,39 +88,17 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         })->name('view-request');
     });
 
-    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
-        Route::get('/job-posting', function () {
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'admin'], function(){
+        Route::get('/recruitment/job-posting', function () {
             return view('hr.job-posting ');
         })->name('job-posting');
     });
 
-    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
-        Route::get('/applicant/list', function () {
-            return view('hr.applicant-list');
-        })->name('applicant-list');
-    });
-
-    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
-        Route::get('/applicant/profile', function () {
-            return view('hr.applicant-profile');
-        })->name('applicant-profile');
-    });
-
-    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation'], function(){
-        Route::get('/leave-request', function () {
+    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'admin'], function(){
+        Route::get('/compen/leave-request', function () {
             return view('hr.leave-request');
         })->name('leave-request');
     });
 
-    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation'], function(){
-        Route::get('/leave-list', function () {
-            return view('hr.leave-list');
-        })->name('leave-list');
-    });
-
-    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'compensation'], function(){
-        Route::get('/time-keeping', function () {
-            return view('hr.time-keeping');
-        })->name('time-keeping');
-    });
+    Route::get('/search', [\App\Http\Controllers\JobsAvailableController::class, 'search']);
 }); 
