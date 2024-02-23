@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\HR;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class HRController extends Controller
@@ -17,6 +21,24 @@ class HRController extends Controller
             abort(403);
         }
         return view('hr.dashboard.index');
+    }
+
+    public function emp_list()
+    {
+        $employees = Employee::all();
+
+        return view('hr.view-employee-list', [
+            'employees' => $employees,
+        ]);
+    }
+
+    public function emp_detail($id)
+    {
+        $user = Employee::where('id', $id)->first();
+
+        return view('hr.view-employee-profile', [
+            'user' => $user,
+        ]);
     }
 
     /**

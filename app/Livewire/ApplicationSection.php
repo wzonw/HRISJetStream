@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class AppProfile extends Component
+class ApplicationSection extends Component
 {
     public function render()
     {
-        return view('livewire.app-profile');
+        return view('livewire.application-section');
     }
 }
