@@ -22,6 +22,11 @@ export default {
             fontSize: {
                 '3.5xl': ['32px', '32px'],
             },
+
+            fontStyle: {
+                'italic':'italic',
+            },
+
             height: {
                 '17': '70px',
                 '18': '72px',

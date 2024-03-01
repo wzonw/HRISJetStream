@@ -10,9 +10,10 @@ class compenbencontroller extends Controller
 {
     public function index()
     {
-        if(Gate::denies('for-compen-ben')){
+        if(Gate::denies('for-compensation')){
             abort(403);
         }
-        return view('hr.leave-request');
+        return view('hr.dashboard.index');
     }
+
 }

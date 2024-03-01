@@ -23,6 +23,12 @@
                     </x-nav-link>
                     @endif
 
+                    @can('for-applicants')
+                    <x-nav-link href="{{ route('application-section') }}" :active="request()->routeIs('application-section')">
+                        {{ __('Application') }}
+                    </x-nav-link>
+                    @endif
+
                     @can('for-admins')
                     <x-nav-link href="{{ route('hr.dashboard.index') }}" :active="request()->routeIs('hr.dashboard.index')">
                         {{ __('Admin') }}
@@ -30,13 +36,13 @@
                     @endif
 
                     @can('for-recruitment')
-                    <x-nav-link href="{{ route('job-posting') }}" :active="request()->routeIs('job-posting')">
-                        {{ __('recruitment') }}
+                    <x-nav-link href="{{ route('r.dashboard.index') }}" :active="request()->routeIs('hr.dashboard.index')">
+                        {{ __('Admin') }}
                     </x-nav-link>
                     @endif
-                    
-                    @can('for-compen-ben')
-                    <x-nav-link href="{{ route('leave-request') }}" :active="request()->routeIs('leave-request')">
+
+                    @can('for-compensation')
+                    <x-nav-link href="{{ route('c.dashboard.index') }}" :active="request()->routeIs('hr.dashboard.index')">
                         {{ __('Admin') }}
                     </x-nav-link>
                     @endif
@@ -131,7 +137,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('user-personal-info') }}">
+                            <x-dropdown-link href="{{ route('dashboard') }}">
                                 {{ __('Personal Information') }}
                             </x-dropdown-link>
 

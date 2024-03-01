@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Applications;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,18 @@ Route::get('/', function () {
     return view('livewire.landing-page');
 })->name('landing-page');
 
+
 Route::get('/plm/jobs', function () {
     return view('jobs-available');
-})->name('guest-jobs-available');
+})->name('guest-jobs');
 
-Route::post('/plm/jobs/application/{id}', [App\Http\Controllers\Applicant\ApplicantController::class, 'guest_application'])
-    ->name('app-profile');
+
+Route::post('/plm/jobs/application/{id}', [\App\Http\Controllers\Applicant\ApplicantController::class, 'guest_application'])
+->name('guest-application');
+
+Route::post('/plm/jobs/application/{id}/success', [\App\Http\Controllers\Applicant\ApplicantController::class, 'apply'])
+->name('guest-application-success');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -35,20 +42,17 @@ Route::middleware([
 });
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/applicant/user/info/personal', function () {
-        return view('livewire.user-personal-info');
-    })->name('user-personal-info');
-});
-
-
 Route::group(['middleware' => 'auth:sanctum'], function() {
-    Route::group(['middleware' => 'role:hr', 'prefix' => 'admin', 'as' => 'hr.'], function(){
+    Route::group(['middleware' => 'role:personnel management', 'prefix' => 'admin', 'as' => 'hr.'], function(){
         Route::resource('dashboard', \App\Http\Controllers\HR\HRController::class);
+    });
+
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment', 'as' => 'r.'], function(){
+        Route::resource('dashboard', \App\Http\Controllers\Recruitment\RecruitmentController::class);
+    });
+
+    Route::group(['middleware' => 'role:compensation', 'prefix' => 'compensation', 'as' => 'c.'], function(){
+        Route::resource('dashboard', \App\Http\Controllers\Compensation\compenbencontroller::class); 
     });
 
 
@@ -82,23 +86,37 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         ->name('view-employee-profile');
     });
 
-    Route::group(['middleware' => 'role:hr', 'prefix' => 'admin'], function(){
+    Route::group(['middleware' => 'role:personnel management', 'prefix' => 'pm'], function(){
         Route::get('/view/request', function () {
             return view('hr.view-request');
         })->name('view-request');
     });
 
-    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'admin'], function(){
-        Route::get('/recruitment/job-posting', function () {
-            return view('hr.job-posting ');
-        })->name('job-posting');
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::get('/view/applicant/list', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'join_data'])
+        ->name('applicant-list');
     });
 
-    Route::group(['middleware' => 'role:compen-ben', 'prefix' => 'admin'], function(){
-        Route::get('/compen/leave-request', function () {
-            return view('hr.leave-request');
-        })->name('leave-request');
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::get('/view/applicant/profile/{id}', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'applicant_profile'])
+        ->name('view-applicant-profile');
+    });
+
+
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::get('/job-posting', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'job_posting'])
+        ->name('job-posting');
+    });
+
+    Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
+        Route::post('/job-posting/success', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'job_post'])
+        ->name('job-post');
+    });
+
+    Route::group(['middleware' => 'role:compensation', 'prefix' => 'compensation'], function(){
+        Route::post('/leave-request', [\App\Http\Controllers\Compensation\compenbencontroller::class, 'leave-request'] )->name('leave-request');
     });
 
     Route::get('/search', [\App\Http\Controllers\JobsAvailableController::class, 'search']);
+
 }); 

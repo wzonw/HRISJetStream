@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
+use App\Models\Applications;
+use App\Models\JobApplication;
 use App\Models\JobApplications;
 use App\Models\JobsAvailable;
 use Illuminate\Http\Request;
@@ -22,9 +25,6 @@ class ApplicantController extends Controller
         return view('applicant-dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function detail($id)
     {
 
@@ -91,9 +91,23 @@ class ApplicantController extends Controller
         $job = JobsAvailable::findOrFail($request->input('job_id'));
         
         return view('livewire.app-profile', [
-            'job' => $job
+            'job' =>$job
         ]);
 
+    }
+
+    public function apply(){
+        Applications::create([
+            'job_id' => request('job_id'),
+            'name' => request('name'),
+            'email' => request('email'),
+            'contact_number' => request('number'),
+        ]);
+
+        
+        $message = 'Successfully Applied';
+
+        return redirect()->route('guest-jobs')->with('message', $message);
     }
 
     /**

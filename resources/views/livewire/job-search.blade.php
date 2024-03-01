@@ -30,7 +30,7 @@
     </div>
     </form>
     <div class="mt-5">
-        <a href="{{ route('landing-page') }}">
+        <a href="{{ route('landing-page') }}" style="color: rgba(45, 52, 154">
             Go Back to Landing Page
         </a>
     </div>

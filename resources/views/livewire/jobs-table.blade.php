@@ -1,4 +1,3 @@
-
 <div>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     
@@ -36,16 +35,17 @@
                         <p> {{$job->status}} </p>
                         <p> {{$job->college}} </p>
                      </div> 
-                    @if ($job->salary[5] == '.')
+                    @if ($job->salary[1] == '.')
+                    @elseif ($job->salary[5] == '.')
                         <p class="ml-5"> P{{$job->salary[0]}}{{$job->salary[1]}},
                             {{$job->salary[2]}}{{$job->salary[3]}}{{$job->salary[4]}}</p>
-                    @elseif ($job->salary[6] == '.')
+                    @elseif($job->salary[6] == '.')
                         <p class="ml-5"> P{{$job->salary[0]}}{{$job->salary[1]}}{{$job->salary[2]}},
                             {{$job->salary[3]}}{{$job->salary[4]}}{{$job->salary[5]}}</p>
                     @endif
                 </th>       
                 <td class="w-10 border-l border-black">
-                    <form action="{{ route('app-profile', $job->id) }}" method="POST">
+                    <form action="{{ route('guest-application', $job->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="job_id" value="{{ $job->id }}">
                         <x-button-gold class="mx-2 w-28" >

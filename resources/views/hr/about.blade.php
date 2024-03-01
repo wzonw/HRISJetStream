@@ -11,7 +11,7 @@
                     Full Name:
                 </p>
                 <p class="w-32 min-h-max text-black text-base font-medium font-inter leading-loose">
-                    Full Name
+                    {{ $user->name }}
                 </p> 
             </div>
             <div class="flex space-x-3">
@@ -19,7 +19,7 @@
                     Employee ID:
                 </p>
                 <p class="w-32 min-h-max text-black text-base font-medium font-inter leading-loose">
-                    Employee ID
+                    {{ $user->id }}
                 </p>                   
             </div>
             <div class="flex space-x-3">
@@ -52,7 +52,7 @@
                 <tbody>
                     <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 dark:border-black">
                         <th scope="row" class="px-6 py-3 font-medium  whitespace-nowrap">
-                            PhineaseFlynn-Resume.pdf
+                            Resume.pdf
                         </th>
                     </tr>
                     <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 dark:border-black">

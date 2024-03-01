@@ -4,11 +4,11 @@
         <div class="flex justify-between h-12 ">
             <div class="flex mt-1 ">
                 <!-- Logo -->
-                <div class="static">
+                <div>
                     <div class="relative h-16 ml-[-55px]">
                         <img class="h-16" src="https://www.plm.edu.ph/images/ui/plm-logo--with-header.png"/>
                     </div>
-                    <p class="absolute top-12 left-[112px] px-1 py-1 h-3 uppercase text-yellow-550 font-black text-[10px] font-'inter'">
+                    <p class="absolute top-12 left-[70px] px-1 py-1 h-3 uppercase text-yellow-550 font-black text-[10px] font-inter">
                         Human Resources Information System
                     </p>
                 </div>  
@@ -57,13 +57,13 @@
                             <div class="block px-4 py-2 text-base font-bold text-indigo-800 leading-loose">
                                 {{ Auth::user()->name . " " . Auth::user()->surname }}
                             </div>
-
+                            
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Employee Portal') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('hr.dashboard.index') }}">
-                                {{ __('Go To Employee Portal ') }}
+                            <x-dropdown-link href="{{ route('dashboard') }}">
+                                {{ __('Go To Employee Portal') }}
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

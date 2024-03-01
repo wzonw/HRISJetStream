@@ -15,7 +15,7 @@
                 </div>
                 <livewire:jobs-table />
             </div>
-            <div class="w-[392px] h-[450px]     ">
+            <div class="w-[392px] h-[450px]">
                 <livewire:job-search />
             </div>
         </div>
