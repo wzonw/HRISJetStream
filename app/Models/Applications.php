@@ -14,5 +14,6 @@ class Applications extends Model
         'name',
         'email',
         'contact_number',
+        'file'
     ];
 }

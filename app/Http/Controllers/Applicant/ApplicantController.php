@@ -96,11 +96,29 @@ class ApplicantController extends Controller
 
     }
 
-    public function apply(){
+    public function apply(Request $request){
+
+        /**validationns: request->validate([
+         * 'file'=>'required|mimes:pdf,doc'
+         * ]);
+         * 
+         */
+        
+        if( $request -> has('file')){
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = time().'.'.$extension;
+
+            $path = ('uploads\file');
+            $file->move($path, $filename);
+        };
+
         Applications::create([
             'job_id' => request('job_id'),
             'name' => request('name'),
             'email' => request('email'),
+            'file'=> $path.$filename,
             'contact_number' => request('number'),
         ]);
 
