@@ -22,6 +22,7 @@ class ApplicantController extends Controller
         if(Gate::denies('for-applicants')){
             abort(403);
         }
+        
         return view('applicant-dashboard');
     }
 
@@ -98,7 +99,7 @@ class ApplicantController extends Controller
 
     public function apply(Request $request){
 
-        /**validationns: request->validate([
+        /**validations: request->validate([
          * 'file'=>'required|mimes:pdf,doc'
          * ]);
          * 
@@ -108,9 +109,9 @@ class ApplicantController extends Controller
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension();
 
-            $filename = time().'.'.$extension;
+            $filename = $request->input('name') . '.' . $extension;
 
-            $path = ('uploads\file');
+            $path = ('uploads/file');
             $file->move($path, $filename);
         };
 
@@ -118,14 +119,15 @@ class ApplicantController extends Controller
             'job_id' => request('job_id'),
             'name' => request('name'),
             'email' => request('email'),
-            'file'=> $path.$filename,
+            'file'=> $path.'/'.$filename,
             'contact_number' => request('number'),
         ]);
 
         
         $message = 'Successfully Applied';
+        $data = Applications::all();
 
-        return redirect()->route('guest-jobs')->with('message', $message);
+        return redirect()->route('guest-jobs')->with('message', $message)->with('data',$data);
     }
 
     /**

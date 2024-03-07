@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Applications;
 use App\Models\JobsAvailable;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,13 @@ class RecruitmentController extends Controller
         return view('hr.view-applicant-profile', [
             'applicant' => $applicant,
         ]);
+    }
+
+    public function view_file($id)
+    {   
+        $data = Applications::find($id);
+
+        return view('livewire.view-file', compact('data'));
     }
 
     public function join_data(){

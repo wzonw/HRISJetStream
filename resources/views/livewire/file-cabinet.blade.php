@@ -24,7 +24,7 @@
                     Resume
                 </th>       
                 <td class="px-6 py-3">
-                    Phinease Flynn_Resume.pdf
+                    <a href="{{ $applicant_file->file }}">{{ $applicant_file->file }} </a>
                 </td>
             </tr>
             <tr class="odd:bg-white odd:dark:bg-white even:bg-gray-50 even:dark:bg-slate-100 dark:border-black">

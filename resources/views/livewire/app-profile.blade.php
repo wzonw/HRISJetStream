@@ -23,15 +23,9 @@
             </div>
 
             <div class="w-[670px] min-h-max text-black text-base text-left font-normal font-inter">
-                @if ($job->salary[1] == '.')
-                <p class="">Salary: Php 0</p>
-                @elseif ($job->salary[5] == '.')
-                <p class="">Salary: Php {{$job->salary[0]}}{{$job->salary[1]}},
-                    {{$job->salary[2]}}{{$job->salary[3]}}{{$job->salary[4]}}</p>
-                @elseif ($job->salary[6] == '.')
-                <p class="">Salary: Php {{$job->salary[0]}}{{$job->salary[1]}}{{$job->salary[2]}},
-                        {{$job->salary[3]}}{{$job->salary[4]}}{{$job->salary[5]}}</p>
-                @endif
+                <p class="ml-5">
+                    Php {{$job->salary}}
+                 </p>
 
                 <p class="text-wrap mt-5 font-bold">Job Details</p>
                 <p class="text-justify">{!! nl2br($job->job_desc) !!}</p>
@@ -56,17 +50,17 @@
 
                 <div class="mt-4 mx-12 inline-flex justify-center items-center space-x-2">
                     <x-label class="w-24" for="email" value="{{ __('Email') }}" />
-                    <x-input id="email" class="block mt-1 w-72" type="email" name="email" :value="old('email')"  />
+                    <x-input id="email" class="block mt-1 w-72" type="email" name="email" :value="old('email')" required  />
                 </div>
 
                 <div class="mt-4 mx-12 inline-flex justify-center items-center space-x-2">
                     <x-label class="w-24" for="number" value="{{ __('Contact Number') }}" />
-                    <x-input id="number" class="block mt-1 w-72" type="tel" name="number" :value="old('number')"  />
+                    <x-input id="number" class="block mt-1 w-72" type="tel" name="number" :value="old('number')" required />
                 </div>
 
                 <div class="mt-4 mx-12 inline-flex justify-center items-center space-x-2">
                     <x-label class="w-24" for="file" value="{{ __('Upload File(s)') }}" />
-                    <x-input id="file" class="block mt-1 w-72" type="file" name="file" />
+                    <x-input id="file" class="block mt-1 w-72" type="file" name="file" required />
                 </div>
                 
                 <div class="w-[500px] mt-4 flex justify-center min-h-max text-black text-base text-left font-normal font-inter">

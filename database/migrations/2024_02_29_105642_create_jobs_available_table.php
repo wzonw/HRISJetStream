@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('jobs_available', function (Blueprint $table) {
                 $table->id();
-                $table->string('job-name');
+                $table->string('job_name');
                 $table->string('status');
                 $table->string('college');
-                $table->string('job-desc');
+                $table->string('job_desc');
                 $table->string('dept');
                 $table->string('salary');
                 $table->string('deadline');

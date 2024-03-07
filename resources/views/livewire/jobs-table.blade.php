@@ -27,7 +27,7 @@
                         @else
                         
                             <span class="font-bold"> {{$job->dept}} </span>
-                            <span>&nbsp- Full Time {{$job->job_name}} </span>
+                            <span>&nbsp-  {{$job->job_name}} </span>
                         
                         @endif
                      @endif
@@ -35,14 +35,9 @@
                         <p> {{$job->status}} </p>
                         <p> {{$job->college}} </p>
                      </div> 
-                    @if ($job->salary[1] == '.')
-                    @elseif ($job->salary[5] == '.')
-                        <p class="ml-5"> P{{$job->salary[0]}}{{$job->salary[1]}},
-                            {{$job->salary[2]}}{{$job->salary[3]}}{{$job->salary[4]}}</p>
-                    @elseif($job->salary[6] == '.')
-                        <p class="ml-5"> P{{$job->salary[0]}}{{$job->salary[1]}}{{$job->salary[2]}},
-                            {{$job->salary[3]}}{{$job->salary[4]}}{{$job->salary[5]}}</p>
-                    @endif
+                     <p class="ml-5">
+                        Php {{$job->salary}}
+                     </p>
                 </th>       
                 <td class="w-10 border-l border-black">
                     <form action="{{ route('guest-application', $job->id) }}" method="POST">

@@ -20,14 +20,9 @@
                                     <span class="font-bold">Department: </span>
                                     <span> {{ $job->dept }} </span><br>
                                     <span class="font-bold">Salary: </span> 
-                                    @if ($job->salary[1] == '.')
-                                    @elseif ($job->salary[5] == '.')
-                                        <span> Php {{$job->salary[0]}}{{$job->salary[1]}},
-                                            {{$job->salary[2]}}{{$job->salary[3]}}{{$job->salary[4]}}</span>
-                                    @elseif($job->salary[6] == '.')
-                                        <span> Php {{$job->salary[0]}}{{$job->salary[1]}}{{$job->salary[2]}},
-                                            {{$job->salary[3]}}{{$job->salary[4]}}{{$job->salary[5]}}</span>
-                                    @endif
+                                    <p class="ml-5">
+                                        Php {{$job->salary}}
+                                     </p>
                                 </div> 
                             </th>   
                         </tr>
@@ -47,14 +42,9 @@
                                     <span class="font-bold">Department: </span>
                                     <span> {{ $job->dept }} </span><br>
                                     <span class="font-bold">Salary: </span> 
-                                    @if ($job->salary[1] == '.')
-                                    @elseif ($job->salary[5] == '.')
-                                        <span> Php {{$job->salary[0]}}{{$job->salary[1]}},
-                                            {{$job->salary[2]}}{{$job->salary[3]}}{{$job->salary[4]}}</span>
-                                    @elseif($job->salary[6] == '.')
-                                        <span> Php {{$job->salary[0]}}{{$job->salary[1]}}{{$job->salary[2]}},
-                                            {{$job->salary[3]}}{{$job->salary[4]}}{{$job->salary[5]}}</span>
-                                    @endif
+                                    <p class="ml-5">
+                                        Php {{$job->salary}}
+                                     </p>
                                 </div> 
                             </th>   
                         </tr>

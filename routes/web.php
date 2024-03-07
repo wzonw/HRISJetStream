@@ -102,6 +102,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         ->name('view-applicant-profile');
     });
 
+    Route::get('/view/applicant/profile/{id}/file', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'view_file'])
+    ->name('view-file');
 
     Route::group(['middleware' => 'role:recruitment', 'prefix' => 'recruitment'], function(){
         Route::get('/job-posting', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'job_posting'])
@@ -112,10 +114,12 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::post('/job-posting/success', [\App\Http\Controllers\Recruitment\RecruitmentController::class, 'job_post'])
         ->name('job-post');
     });
+    
 
     Route::group(['middleware' => 'role:compensation', 'prefix' => 'compensation'], function(){
         Route::post('/leave-request', [\App\Http\Controllers\Compensation\compenbencontroller::class, 'leave-request'] )->name('leave-request');
     });
+
 
     Route::get('/search', [\App\Http\Controllers\JobsAvailableController::class, 'search']);
 
